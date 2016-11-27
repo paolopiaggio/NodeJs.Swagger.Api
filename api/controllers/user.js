@@ -26,7 +26,8 @@ var context = require('./../db/context.js');
   we specify that in the exports of this module that 'hello' maps to the function named 'hello'
  */
 module.exports = {
-  getAllUser: getAllUser
+  getAllUser: getAllUser,
+  getUserById: getUserById
 };
 
 /*
@@ -37,6 +38,7 @@ module.exports = {
  */
 function getAllUser(req, res) {
   // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
+  console.log(req);
   context.users.findAll()
     .then(function (users) {
       res.json({"Error" : false, "Message" : "Success", "Users" : users});
@@ -44,5 +46,29 @@ function getAllUser(req, res) {
     .catch(function (err){
       console.log(err);
       res.json({"Error" : true, "Message" : "Error retrieving users"});
+    });
+}
+
+function getUserById(req, res) {
+  // variables defined in the Swagger document can be referenced using req.swagger.params.{parameter_name}
+  if(!req.swagger.params.id.value)
+  {
+    res.status(404);
+    res.json({"Error" : true, "Message" : "id not provided"});
+  }
+  context.users.findById(req.swagger.params.id.value)
+    .then(function (user) {
+      if(!user) {
+        res.status(404);
+        res.json({"Error" : true, "Message" : "user not found"});
+      }
+      else {
+        res.json({"Error" : false, "Message" : "Success", "User" : user});
+      }
+    })
+    .catch(function (err){
+      console.log(err);
+      res.status(500);
+      res.json({"Error" : true, "Message" : "Error retrieving user"});
     });
 }

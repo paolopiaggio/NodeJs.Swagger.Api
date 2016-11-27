@@ -56,6 +56,26 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /users/{id}:
+    x-swagger-router-controller: user
+    get:
+      description: "Returns user by id"
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          description: The id of user to get
+          required: true
+          type: number
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetUserResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -86,3 +106,15 @@ definitions:
               type: number
             username:
               type: string
+  GetUserResponse:
+    required:
+      - user
+    properties:
+      # The array of movies
+      user:
+        type: object
+        properties:
+          id:
+            type: number
+          username:
+            type: string

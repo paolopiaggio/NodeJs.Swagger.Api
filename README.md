@@ -6,6 +6,9 @@ https://github.com/swagger-api/swagger-node/tree/master/docs
 // install dependencies
 npm install
 
+// install swagger commandline tool
+npm install -g swagger
+
 // start app
 swagger project start
 

@@ -3,6 +3,9 @@ https://github.com/swagger-api/swagger-node/tree/master/docs
 
 ## commands:
 ```javascript
+// install dependencies
+npm install
+
 // start app
 swagger project start
 

@@ -1,0 +1,24 @@
+{
+  "name": "hello-world",
+  "version": "0.0.1",
+  "private": true,
+  "description": "New Swagger API Project",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "restify": "^4.0.2",
+    "sequelize": "^3.27.0",
+    "sqlite3": "^3.1.8",
+    "swagger-restify-mw": "^0.1.0"
+  },
+  "devDependencies": {
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "swagger project test"
+  }
+}
